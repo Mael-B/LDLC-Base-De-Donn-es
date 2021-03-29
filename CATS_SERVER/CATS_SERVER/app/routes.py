@@ -114,13 +114,11 @@ def get_rooms_request(players_id):
     print(all_rooms)
 
     for room in all_rooms:
-        request_sql = f'''SELECT * FROM cats '''
-
-
-        print("ROOM")
+        request_sql = f'''SELECT * FROM cats WHERE rooms_id = {room["rooms_id"]} '''
+        room["cats"] = sql_select(request_sql)
         print(room)
 
-    return jsonify(room), 200
+    return jsonify(all_rooms), 200
 
 
 def add_room_request(players_id, request_json):
